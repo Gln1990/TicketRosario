@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Tickets - Eventos</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-icone">🎫</span>
+            <span class="logo-texto">TicketPass</span>
+        </div>
+        <div class="nav-links">
+            <a href="/eventos">Página Inicial</a>
+        </div>
+    </nav>
+
+    <div class="container-pagina">
+        
+        <header class="banner-boas-vindas">
+            <h1>Eventos Disponíveis</h1>
+            <p>Selecione o evento desejado para realizar a compra do seu ticket.</p>
+			<a th:href="@{/eventos/novo}" class="btn-cadastrar">+ Cadastrar Novo Evento</a>
+            
+        </header>
+
+        <div class="grid-eventos-layout">
+            <div class="card-evento" th:each="evento : ${eventos}">
+                <div class="card-imagem">
+                    <img th:src="@{'/imagens/' + ${evento.nomeImagem}}" alt="Imagem do Evento">
+                </div>
+				<div class="card-corpo">
+				    <div class="card-titulo" th:text="${evento.nome}">Nome do Evento</div>
+				    <div class="card-info"><strong>📍 Local:</strong> <span th:text="${evento.local}">Local</span></div>
+				    <div class="card-info"><strong>📅 Data:</strong> <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy HH:mm')}">Data</span></div>
+				    <div class="card-preco" th:text="'R$ ' + ${evento.precoBase}">R$ 0.00</div>
+				    
+				    <a th:href="@{/eventos/detalhes/{id}(id=${evento.idEvento})}" class="btn-detalhes">Ver Detalhes</a>
+				    
+				    <a th:href="@{'/eventos/excluir/' + ${evento.idEvento}}" 
+				       class="btn-excluir" 
+				       onclick="return confirm('Tem certeza que deseja excluir este evento?');"> 
+				       ❌ Excluir Evento
+				    </a>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-conteudo">
+            <div class="footer-contatos">
+                <p><strong>📞 Suporte:</strong> (11) 4002-8922</p>
+                <p><strong>✉️ E-mail:</strong> contato@ticketpass.com.br</p>
+            </div>
+            <div class="footer-creditos">
+                <p>&copy; 2026 TicketPass Inc. Todos os direitos reservados.</p>
+                <p>Desenvolvido por: <strong>Gleyson Rosário</strong></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Evento</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <span class="logo-icone">🎫</span>
+            <span class="logo-texto">TicketPass</span>
+        </div>
+        <div class="nav-links">
+            <a href="/eventos">← Voltar para a Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="container-detalhes">
+            <div class="banner-container">
+                <img th:src="@{'/imagens/' + ${evento.nomeImagem}}" alt="Banner do Evento">
+            </div>
+
+            <div class="conteudo-detalhes">
+                <div>
+                    <h1 th:text="${evento.nome}">Nome do Evento</h1>
+                    <p><strong>📍 Local:</strong> <span th:text="${evento.local}">Local</span></p>
+                    <p><strong>📅 Data e Hora:</strong> <span th:text="${#temporals.format(evento.dataEvento, 'dd/MM/yyyy HH:mm')}">Data</span></p>
+                    
+                    <h2>Line-up / Artistas</h2>
+                    <p th:text="${evento.artistas}">Nomes dos artistas...</p>
+                    
+                    <h2>Maiores Sucessos</h2>
+                    <p th:text="${evento.maioresSucessos}">Músicas de sucesso...</p>
+                    
+                    <h2>Histórico em São Paulo</h2>
+                    <p>Esse artista/elenco já se apresentou <strong th:text="${evento.vezesEmSp}">0</strong> vezes em São Paulo!</p>
+                    
+                    <h2>Setores Disponíveis</h2>
+                    <p><strong>Tipos de Ingresso:</strong> <span th:text="${evento.tiposIngresso}">Pista, VIP...</span></p>
+
+                    <h2>Como Chegar</h2>
+                    <div class="mapa-container">
+                        <iframe th:src="${evento.linkMapa}" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="box-compra">
+                    <p>A partir de</p>
+                    <div class="preco-detalhes" th:text="'R$ ' + ${evento.precoBase}">R$ 0.00</div>
+                    <p>Disponíveis: <span th:text="${evento.quantidadeDisponivel}">0</span> ingressos</p>
+                    <a th:href="@{/eventos/comprar/{id}(id=${evento.idEvento})}" class="btn-comprar">Garantir Ingresso</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-conteudo">
+            <div class="footer-contatos">
+                <p><strong>📞 Suporte:</strong> (11) 4002-8922</p>
+                <p><strong>✉️ E-mail:</strong> contato@ticketpass.com.br</p>
+            </div>
+            <div class="footer-creditos">
+                <p>&copy; 2026 TicketPass Inc. Todos os direitos reservados.</p>
+                <p>Desenvolvido por: <strong>Gleyson Rosário</strong></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

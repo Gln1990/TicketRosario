@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Compra Realizada!</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 40px; text-align: center; }
+        .card { max-width: 500px; background: white; padding: 30px; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #28a745; }
+        .detalhes { background-color: #f8f9fa; border-left: 5px solid #28a745; padding: 15px; text-align: left; margin: 20px 0; border-radius: 4px; }
+        .btn-voltar { background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; margin-top: 10px; }
+        .btn-voltar:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>✓ Compra Confirmada!</h1>
+    <p>Seu ticket digital foi gerado com sucesso.</p>
+    
+	<div class="detalhes">
+	        <h3>Resumo do Voucher:</h3>
+	        <p><strong>Evento:</strong> <span th:text="${evento.nome}">Nome</span></p>
+	        <p><strong>Local:</strong> <span th:text="${evento.local}">Local</span></p>
+	        <p><strong>Quantidade:</strong> <span th:text="${quantidadeComprada}">1</span> ingresso(s)</p>
+	        <p><strong>Valor Total Pago:</strong> <span th:text="'R$ ' + ${valorTotal}">R$ 0.00</span></p>
+	    </div>
+
+    <a href="/eventos" class="btn-voltar">Voltar para Eventos</a>
+</div>
+
+</body>
+</html>
